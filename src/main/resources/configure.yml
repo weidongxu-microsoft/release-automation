@@ -1,0 +1,10 @@
+projectRootJava: 'D:/github/azure-libraries-for-java'
+projectRootDotNet: 'D:/github/azure-libraries-for-net'
+readmeFile: 'README.md'
+releaseNoteFileTemplate: 'notes/prepare-for-{0}.md'
+
+previousVersion: '1.26.0'
+releaseVersion: '1.27.0'
+
+# JAVA / DOT_NET
+releaseType: JAVA
