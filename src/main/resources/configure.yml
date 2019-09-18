@@ -1,5 +1,5 @@
-projectRootJava: 'D:/github/azure-libraries-for-java'
-projectRootDotNet: 'D:/github/azure-libraries-for-net'
+projectRootJava: '/mnt/d/github/azure-libraries-for-java'
+projectRootDotNet: '/mnt/d/github/azure-libraries-for-net'
 readmeFile: 'README.md'
 releaseNoteFileTemplate: 'notes/prepare-for-{0}.md'
 
