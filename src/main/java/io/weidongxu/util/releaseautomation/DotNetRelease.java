@@ -41,7 +41,7 @@ public class DotNetRelease implements Release {
                 String prev_prev_version = matcher.group("version");
                 line = line.replaceAll(prev_prev_version, PREV_VERSION);
             } else if (line.startsWith("| " + majorVersion(PREV_VERSION) + "    ")) {
-                String newLine = line.replace(PREV_VERSION, RELEASE_VERSION).replace(majorVersion(PREV_VERSION), majorVersion(RELEASE_VERSION));
+                String newLine = line.replace(PREV_VERSION, RELEASE_VERSION).replace(PREV_VERSION, RELEASE_VERSION).replace(majorVersion(PREV_VERSION), majorVersion(RELEASE_VERSION));
                 lines.add(newLine);
             }
             lines.add(line);
