@@ -19,15 +19,15 @@ public class Main {
             try (InputStream in = Main.class.getResourceAsStream("/configure.yml")) {
                 configure = yaml.loadAs(in, Configure.class);
             }
-
-            Version.PREV_VERSION = configure.getPreviousVersion();
-            Version.RELEASE_VERSION = configure.getReleaseVersion();
-
             ReleaseType releaseType = ReleaseType.valueOf(configure.getReleaseType());
 
-            Release release = releaseType == ReleaseType.JAVA ? new JavaRelease(configure.getProjectRootJava()) : new DotNetRelease(configure.getProjectRootDotNet());
+            Context context = new Context(configure.getPreviousVersion(), configure.getReleaseVersion());
+
+            Release release = (releaseType == ReleaseType.JAVA) ?
+                    new JavaRelease(context, configure.getProjectRootJava()) :
+                    new DotNetRelease(context, configure.getProjectRootDotNet());
             release.processReadme(configure.getReadmeFile());
-            release.processPrepareNote(MessageFormat.format(configure.getReleaseNoteFileTemplate(), Version.RELEASE_VERSION));
+            release.processPrepareNote(MessageFormat.format(configure.getReleaseNoteFileTemplate(), context.getReleaseVersion()));
         } catch (Exception e) {
             e.printStackTrace();
         }

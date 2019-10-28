@@ -1,9 +1,6 @@
 package io.weidongxu.util.releaseautomation;
 
-public class Version {
-
-    public static String PREV_VERSION;
-    public static String RELEASE_VERSION;
+public class UtilVersion {
 
     public static String snapShotVersion(String version) {
         int dotAt;

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiFunction;
 
-public class Util {
+public class UtilFile {
 
     public static void processFile(File file, BiFunction<List<String>, String, List<String>> processFunc) throws IOException {
         List<String> lines = new ArrayList<>();
@@ -18,7 +18,7 @@ public class Util {
             }
         }
 
-        Util.writeToFile(file, lines);
+        UtilFile.writeToFile(file, lines);
     }
 
     public static void writeToFile(File file, String text) throws IOException {
