@@ -30,7 +30,7 @@ public class JavaRelease implements Release {
 
     @Override
     public void processReadme(File readmeFile) throws IOException {
-        UtilFile.processFile(readmeFile, (lines, line) -> DotNetRelease.processReadmeLine(context, lines, line));
+        UtilFile.processFile(readmeFile, (lines, line) -> JavaRelease.processReadmeLine(context, lines, line));
     }
 
     static List<String> processReadmeLine(Context context, List<String> lines, String line) {
