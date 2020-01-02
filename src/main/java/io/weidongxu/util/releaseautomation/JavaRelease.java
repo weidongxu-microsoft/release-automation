@@ -37,9 +37,10 @@ public class JavaRelease implements Release {
         final String previousVersion = context.getPreviousVersion();
         final String releaseVersion = context.getReleaseVersion();
 
-        if (line.startsWith("This README is based on the released stable version") ||
-                line.startsWith(":triangular_flag_on_post:") ||
-                line.startsWith("If you are using released builds from")) {
+        if (line.startsWith("This README is based on the released stable version")
+                || line.startsWith(":triangular_flag_on_post:")
+                || line.startsWith("If you are using released builds from")
+                || line.startsWith("For instance, if you only need")) {
             line = line.replace(previousVersion, releaseVersion);
         } else if (line.startsWith("    <version>")) {
             line = line.replace(previousVersion, releaseVersion);
@@ -49,9 +50,10 @@ public class JavaRelease implements Release {
 
             Pattern pattern = Pattern.compile(".* from (?<version>\\d+\\.\\d+\\.\\d+) to .*");
             Matcher matcher = pattern.matcher(line);
-            matcher.find();
-            String prev_prev_version = matcher.group("version");
-            line = line.replace(prev_prev_version, previousVersion);
+            if (matcher.find()) {
+                String prev_prev_version = matcher.group("version");
+                line = line.replace(prev_prev_version, previousVersion);
+            }
         } else if (line.startsWith("| " + previousVersion + "    ")) {
             String newLine = line.replace(previousVersion, releaseVersion);
             lines.add(newLine);
@@ -60,7 +62,7 @@ public class JavaRelease implements Release {
         return lines;
     }
 
-    private static String PREPARE_NOTE_TEMPLATE =
+    private final static String PREPARE_NOTE_TEMPLATE =
             "# Prepare for Azure Management Libraries for Java {new_version} #\n" +
             "\n" +
             "Steps to migrate code that uses Azure Management Libraries for Java from {prev_version_major} to {new_version_major} ...\n" +

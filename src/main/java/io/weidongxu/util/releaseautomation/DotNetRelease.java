@@ -37,9 +37,9 @@ public class DotNetRelease implements Release {
         final String previousVersion = context.getPreviousVersion();
         final String releaseVersion = context.getReleaseVersion();
 
-        if (line.startsWith("This README is based on the released stable version") ||
-                line.startsWith(":triangular_flag_on_post:") ||
-                line.endsWith("release builds are available on NuGet:")) {
+        if (line.startsWith("This README is based on the released stable version")
+                || line.startsWith(":triangular_flag_on_post:")
+                || line.endsWith("release builds are available on NuGet:")) {
             line = line.replace(previousVersion, releaseVersion);
         } else if (line.startsWith("If you are migrating your code")) {
             line = line.replace(previousVersion, releaseVersion);
@@ -59,7 +59,7 @@ public class DotNetRelease implements Release {
         return lines;
     }
 
-    private static String PREPARE_NOTE_TEMPLATE =
+    private final static String PREPARE_NOTE_TEMPLATE =
             "# Prepare for Azure Management Libraries for .NET {new_version_major} #\n" +
             "\n" +
             "Steps to migrate code that uses Azure Management Libraries for .NET from {prev_version_major} to {new_version_major} ...\n" +
